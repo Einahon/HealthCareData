@@ -5,8 +5,8 @@
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/HealthcareManagementTwoDB</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">Zion2024</property>
+        <property name="hibernate.connection.username"></property>
+        <property name="hibernate.connection.password"></property>
 
 
         <!-- SQL dialect -->
