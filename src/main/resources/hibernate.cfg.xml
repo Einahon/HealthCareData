@@ -22,6 +22,8 @@
         <!-- Names of annotated entity classes -->
 
         <mapping class="com.inahon.model.Patient"/>
+        <mapping class="com.inahon.model.Doctor"/>
+        <mapping class="com.inahon.model.Appointment"/>
 
 
     </session-factory>
