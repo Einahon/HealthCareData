@@ -7,11 +7,11 @@ import jakarta.persistence.*;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Appointment_ID")
+    @Column(name = "AppointmentID")
     private int appointmentId;
-    @Column(name = "Patient_ID")
+    @Column(name = "PatientID")
     private int patientId;
-    @Column(name = "Doctor_ID")
+    @Column(name = "DoctorID")
     private int doctorId;
     @Column(name = "AppointmentDate")
     private String appointmentDate;
