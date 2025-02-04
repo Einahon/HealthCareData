@@ -1,9 +1,12 @@
 package com.inahon;
 
+import com.inahon.model.Appointment;
 import com.inahon.model.Doctor;
 import com.inahon.model.Patient;
+import com.inahon.repository.AppointmentRepositoryImpl;
 import com.inahon.repository.DoctorRepositoryImpl;
 import com.inahon.repository.PatientRepositoryImpl;
+import com.inahon.service.AppointmentService;
 import com.inahon.service.DoctorService;
 import com.inahon.service.PatientService;
 import org.hibernate.SessionFactory;
@@ -23,6 +26,8 @@ public class Main {
         PatientService patientService = new PatientService(patientRepository);
         DoctorRepositoryImpl doctorRepository = new DoctorRepositoryImpl(sessionFactory);
         DoctorService doctorService = new DoctorService(doctorRepository);
+        AppointmentRepositoryImpl appointmentRepository = new AppointmentRepositoryImpl(sessionFactory);
+        AppointmentService appointmentService = new AppointmentService(appointmentRepository);
         Scanner scanner = new Scanner(System.in);
         String choice1 = "Y";
         while (choice1.equalsIgnoreCase("Y")) {
@@ -196,6 +201,92 @@ public class Main {
                             doctorId = scanner.nextInt();
                             doctorService.deleteDoctor(doctorId);  // Use service here
                             System.out.println("Doctor deleted successfully.");
+                            break;
+                        default:
+                            System.out.println("Invalid choice.");
+                    }
+                } finally {
+
+                }
+                System.out.println("Do you want to continue? (Y/N)");
+                choice1 = scanner.next();
+
+            }
+            if (option == 3) {
+
+                System.out.print("Choose a Service: ");
+                System.out.println("---------------");
+
+                System.out.println("1. Create Appointment");
+                System.out.println("2. Read Appointment");
+                System.out.println("3. Update Appointment");
+                System.out.println("4. Delete Appointment");
+
+
+                int choice = scanner.nextInt();
+
+                try {
+                    switch (choice) {
+                        case 1:
+                            // Application calls the service layer, not the repository directly
+                            System.out.println("Create Doctor");
+                            Appointment newAppointment = new Appointment();
+                            scanner.nextLine();
+                            System.out.print("Enter Patient Id: ");
+                            newAppointment.setPatientId(scanner.nextInt());
+                            System.out.print("Enter Doctor Id: ");
+                            newAppointment.setDoctorId(scanner.nextInt());
+                            scanner.nextLine();
+                            System.out.print("Enter Appointment Date: ");
+                            newAppointment.setAppointmentDate(scanner.nextLine());
+                            System.out.print("Enter Notes: ");
+                            newAppointment.setNotes(scanner.nextLine());
+                            appointmentService.createAppointment(newAppointment);  // Use service here
+                            System.out.println("Appointment created successfully.");
+                            break;
+                        case 2:
+                            // Application calls the service layer, not the repository directly
+                            System.out.print("Enter Appointment ID: ");
+                            int appointmentId = scanner.nextInt();
+                            Appointment appointment = appointmentService.getAppointmentById(appointmentId);  // Use service here
+                            if (appointment != null) {
+                                System.out.println("Appointment ID: " + appointment.getAppointmentId());
+                                System.out.println("Patient ID: " + appointment.getPatientId());
+                                System.out.println("Doctor ID: " + appointment.getDoctorId());
+                                System.out.println("Appointment Date: " + appointment.getAppointmentDate());
+                                System.out.println("Notes: " + appointment.getNotes());
+                            } else {
+                                System.out.println("Appointment not found.");
+                            }
+                            break;
+                        case 3:
+                            // Application calls the service layer, not the repository directly
+                            System.out.print("Enter Appointment ID: ");
+                            appointmentId = scanner.nextInt();
+                            scanner.nextLine();  // consume newline
+                            appointment = appointmentService.getAppointmentById(appointmentId);  // Use service here
+                            if (appointment != null) {
+                                System.out.print("Enter new Patient ID: ");
+                                appointment.setPatientId(scanner.nextInt());
+                                System.out.print("Enter new Doctor ID: ");
+                                appointment.setDoctorId(scanner.nextInt());
+                                scanner.nextLine();
+                                System.out.print("Enter new Appointment Date: ");
+                                appointment.setAppointmentDate(scanner.nextLine());
+                                System.out.print("Enter new Notes: ");
+                                appointment.setNotes(scanner.nextLine());
+                                appointmentService.updateAppointment(appointment);  // Use service here
+                                System.out.println("Appointment updated successfully.");
+                            } else {
+                                System.out.println("Appointment not found.");
+                            }
+                            break;
+                        case 4:
+                            // Application calls the service layer, not the repository directly
+                            System.out.print("Enter Appointment ID: ");
+                            appointmentId = scanner.nextInt();
+                            appointmentService.deleteAppointment(appointmentId);  // Use service here
+                            System.out.println("Appointment deleted successfully.");
                             break;
                         default:
                             System.out.println("Invalid choice.");
