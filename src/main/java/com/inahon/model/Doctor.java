@@ -14,15 +14,15 @@ public class Doctor {
     @Column(name = "LastName")
     private String lastName;
     @Column(name = "Specialty")
-    private String speciality;
+    private String specialty;
     @Column(name = "Email")
     private String email;
 
     public Doctor() {}
-    public Doctor(String firstName, String lastName, String speciality, String email) {
+    public Doctor(String firstName, String lastName, String specialty, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.speciality = speciality;
+        this.specialty = specialty;
         this.email = email;
     }
 
@@ -51,11 +51,11 @@ public class Doctor {
     }
 
     public String getSpeciality() {
-        return speciality;
+        return specialty;
     }
 
     public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+        this.specialty = speciality;
     }
 
     public String getEmail() {
@@ -72,7 +72,7 @@ public class Doctor {
                 "doctorId=" + doctorId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", speciality='" + speciality + '\'' +
+                ", speciality='" + specialty + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
