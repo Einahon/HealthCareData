@@ -24,6 +24,7 @@
         <mapping class="com.inahon.model.Patient"/>
         <mapping class="com.inahon.model.Doctor"/>
         <mapping class="com.inahon.model.Appointment"/>
+        <mapping class="com.inahon.model.Office"/>
 
 
     </session-factory>
